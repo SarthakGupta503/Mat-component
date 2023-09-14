@@ -15,10 +15,12 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { PageTemplate2Component } from './page-template2/page-template2.component';
 @NgModule({                
   declarations: [
     MyLibComponent,
-    PageTemplateComponent
+    PageTemplateComponent,
+    PageTemplate2Component
   ],
   imports: [
     MatInputModule,
@@ -40,7 +42,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MyLibComponent,
     MatButtonModule,
     MatInputModule,
-    PageTemplateComponent
+    PageTemplateComponent,
+    PageTemplate2Component
   ]
 })
 export class MyLibModule { }
