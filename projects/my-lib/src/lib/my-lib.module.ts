@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { MyLibComponent } from './my-lib.component';
-import { PageTemplateComponent } from './page-template/page-template.component';
+// import { PageTemplateComponent } from './page-template/page-template.component';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { CommonModule } from '@angular/common';
@@ -16,11 +16,15 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PageTemplate2Component } from './page-template2/page-template2.component';
+import { PageTemplate3Component } from './page-template3/page-template3.component';
+import { PageTemplate4Component } from './page-template4/page-template4.component';
 @NgModule({                
   declarations: [
     MyLibComponent,
-    PageTemplateComponent,
-    PageTemplate2Component
+    // PageTemplateComponent,
+    PageTemplate2Component,
+    PageTemplate3Component,
+    PageTemplate4Component,
   ],
   imports: [
     MatInputModule,
@@ -36,14 +40,23 @@ import { PageTemplate2Component } from './page-template2/page-template2.componen
     MatCardModule,
     FormsModule,
     HttpClientModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    CommonModule
   ],
   exports: [
     MyLibComponent,
     MatButtonModule,
     MatInputModule,
-    PageTemplateComponent,
-    PageTemplate2Component
+    MatIconModule,
+    MatTreeModule,
+    MatExpansionModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatProgressBarModule,
+    // PageTemplateComponent,
+    PageTemplate2Component,
+    PageTemplate3Component,
+    PageTemplate4Component
   ]
 })
 export class MyLibModule { }

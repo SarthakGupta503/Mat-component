@@ -5,9 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyLibModule } from 'my-lib'
+import { PageTemplate3Component } from 'my-lib';
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -2,17 +2,19 @@
     <!-- This is the tree node template for leaf nodes -->
     <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
       <!-- use a disabled button to provide padding for tree leaf -->
-      <button class="add_button iconFont" mat-icon-button disabled></button>
+      <button class="add_button iconFont" mat-icon-button disabled>
+      </button>
       {{node.name}}
     </mat-tree-node>
     <!-- This is the tree node template for expandable nodes -->
     <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
       <button class="add_button iconFont" mat-icon-button matTreeNodeToggle
               [attr.aria-label]="'Toggle ' + node.name">
-        <mat-icon class="mat-icon-rtl-mirror">
+        <mat-icon class="mat-icon-rtl-mirror" >
           {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
         </mat-icon>
       </button>
       {{node.name}}
     </mat-tree-node>
   </mat-tree>
+
