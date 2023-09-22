@@ -300,6 +300,10 @@ export class PageTemplate4Component {
   todoLeafItemSelectionToggle(node:DynamicFlatNode){
 
   }
-
+  selectAll = false;
+  selectAllNodes()
+  {
+    // console.log(node);
+  }
 
 }

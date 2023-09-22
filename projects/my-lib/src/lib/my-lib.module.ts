@@ -19,6 +19,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { PageTemplate2Component } from './page-template2/page-template2.component';
 import { PageTemplate3Component } from './page-template3/page-template3.component';
 import { PageTemplate4Component } from './page-template4/page-template4.component';
+import { PageTemplate5Component } from './page-template5/page-template5.component';
 @NgModule({                
   declarations: [
     MyLibComponent,
@@ -26,6 +27,7 @@ import { PageTemplate4Component } from './page-template4/page-template4.componen
     PageTemplate2Component,
     PageTemplate3Component,
     PageTemplate4Component,
+    PageTemplate5Component,
   ],
   imports: [
     MatInputModule,
