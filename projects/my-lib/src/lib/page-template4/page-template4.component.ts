@@ -60,7 +60,7 @@ export class DynamicDatabase {
   initialData(ApiResponse:any): DynamicFlatNode[] {
     // // var index=0;
     const rootNodeData: DynamicFlatNode[] = this.rootLevelNodes.map((name) => {
-      const filteredObjects = ApiResponse.filter((obj:DynamicFlatNode) => obj.name==name);
+      const filteredObjects = ApiResponse.filter((obj: DynamicFlatNode) => obj.name == name);
       return new DynamicFlatNode(
         name,
         1,                // Initially all are at one level
@@ -130,88 +130,96 @@ export class DynamicDataSource implements DataSource<DynamicFlatNode> {
         .slice()
         .reverse()
         .forEach(node => this.toggleNode(node, false));
-        // console.log(change);
+      // console.log(change);
     }
   }
   toggleNode(node: DynamicFlatNode, expand: boolean) {
     const index = this.data.indexOf(node);
     // If Child is not Availaible
     // console.log(node);
-    if(!node.IsChildAvailaible)
-    return;
+    if (!node.IsChildAvailaible)
+      return;
     if (expand) {
-    // console.log(index);
-    // If Data is availaible in the cache , don't call an Api
-    const cachedChildren = this.database.getChildrenFromCache(node);
-    if (cachedChildren) {
-      // console.log(cachedChildren);
-      // Children are already cached, use them
-      this.insertCachedChildren(node, cachedChildren);
-    }
-
-    // Calling the Api and store the childrens Array's data in the cache
-else{
-    this.database.getChildrenFromApi(node.id).subscribe((result:any) => {
-      // console.log(result);
-      const index = this.data.indexOf(node);
-    
-        // console.log(node);
-        // console.log(expand);
-        // node.isLoading = true;
-
-        // const TempResult = result;
-        var namesArray: string[] = [];
-
-        // Loop through the JSON data and push the "name" value to the namesArray 
-        result.forEach((item: DynamicFlatNode) => {
-          // console.log(item);
-          namesArray.push(item.name);
-        });
-        const Result = namesArray;
-        // string[]=[];
-        const nodes = Result.map(
-          (name: string) =>{
-          const filteredObjects = result.filter((obj:DynamicFlatNode) =>  obj.name==name);
-          // console.log(obj);
-          return  new DynamicFlatNode(
-              name,
-              node.level + 1,
-              filteredObjects[0].id,
-             filteredObjects[0].IsChildAvailaible
-            )}
-        );
-        // console.log(nodes);
-        this.data.splice(this.data.indexOf(node) + 1, 0, ...nodes);
-        this.database.cacheChildren(node, nodes);
-        this.dataChange.next(this.data);
-      })
-    }
-  }
-      else {
-        const index = this.data.indexOf(node);
-        // console.log("asasa");
-        let count = 0;
-        for (
-          let i = index + 1;
-          i < this.data.length && this.data[i].level > node.level;
-          i++, count++
-        ) { }
-        this.data.splice(index + 1, count);
+      // console.log(index);
+      // If Data is availaible in the cache , don't call an Api
+      const cachedChildren = this.database.getChildrenFromCache(node);
+      if (cachedChildren) {
+        // console.log(cachedChildren);
+        // Children are already cached, use them
+        this.insertCachedChildren(node, cachedChildren);
       }
-      this.dataChange.next(this.data);
-      // console.log("Sarthak");
-  }
 
-  
-private insertCachedChildren(node: DynamicFlatNode, cachedChildren: DynamicFlatNode[]) {
-  const index = this.data.indexOf(node);
+      // Calling the Api and store the childrens Array's data in the cache
+      else {
+        this.database.getChildrenFromApi(node.id).subscribe((result: any) => {
+          // console.log(result);
+          const index = this.data.indexOf(node);
 
-  if (index > -1) {
-    // Add cached children to the tree
-    this.data.splice(index + 1, 0, ...cachedChildren);
+          // console.log(node);
+          // console.log(expand);
+          // node.isLoading = true;
+
+          // const TempResult = result;
+          var namesArray: string[] = [];
+
+          // Loop through the JSON data and push the "name" value to the namesArray 
+          result.forEach((item: DynamicFlatNode) => {
+            // console.log(item);
+            namesArray.push(item.name);
+          });
+          const Result = namesArray;
+          // string[]=[];
+          const nodes = Result.map(
+
+            (name: string) => {
+              const filteredObjects = result.filter((obj: DynamicFlatNode) => obj.name == name);
+              // console.log(obj);
+              return new DynamicFlatNode(
+                name,
+                node.level + 1,
+                filteredObjects[0].id,
+                filteredObjects[0].IsChildAvailaible
+              )
+            }
+          );
+          // Create the object you want to add at the beginning of the array
+          const newObj = new DynamicFlatNode("Select All", node.level+1, -1, false);
+
+          // Use unshift to add newObj at the beginning of the nodes array
+          nodes.unshift(newObj);
+
+          // console.log(nodes);
+          this.data.splice(this.data.indexOf(node) + 1, 0, ...nodes);
+          this.database.cacheChildren(node, nodes);
+          this.dataChange.next(this.data);
+        })
+      }
+    }
+    else {
+      const index = this.data.indexOf(node);
+      // console.log("asasa");
+      let count = 0;
+      for (
+        let i = index + 1;
+        i < this.data.length && this.data[i].level > node.level;
+        i++, count++
+      ) { }
+      this.data.splice(index + 1, count);
+    }
     this.dataChange.next(this.data);
+    // console.log("Sarthak");
   }
-}
+
+
+  private insertCachedChildren(node: DynamicFlatNode, cachedChildren: DynamicFlatNode[]) {
+    const index = this.data.indexOf(node);
+
+    if (index > -1) {
+      // Add cached children to the tree
+      this.data.splice(index + 1, 0, ...cachedChildren);
+      this.dataChange.next(this.data);
+    }
+  }
 }
 
 
@@ -227,7 +235,7 @@ private insertCachedChildren(node: DynamicFlatNode, cachedChildren: DynamicFlatN
 export class PageTemplate4Component {
 
   @Input() ApiUrl1: string = "";
-  treeData:any;
+  treeData: any;
   constructor(public database: DynamicDatabase, private http: HttpClient) {
     this.treeControl = new FlatTreeControl<DynamicFlatNode>(this.getLevel, this.isExpandable);
     this.dataSource = new DynamicDataSource(this.treeControl, database, http);
@@ -244,15 +252,15 @@ export class PageTemplate4Component {
       // console.log(TempResult);
       // console.log(namesArray);
       const Result = namesArray;
-      
+
 
       // Array's Name
       this.database.rootLevelNodes = namesArray;  // Setting The RootLevelNodes to Our Database RootLevelNodes
-      this.dataSource.data = this.database.initialData(result); 
-   
-      this.treeData = this.dataSource.data ;  // Initialize treeData
+      this.dataSource.data = this.database.initialData(result);
+
+      this.treeData = this.dataSource.data;  // Initialize treeData
       this.dataSource.data = this.treeData; // Set treeData as the initial data source
-      this.TempData1=this.dataSource.data;
+      this.TempData1 = this.dataSource.data;
     })
   }
 
@@ -265,17 +273,16 @@ export class PageTemplate4Component {
 
   isExpandable = (node: DynamicFlatNode) => node.IsChildAvailaible;
 
-  hasChild = (_: number, NodeData: DynamicFlatNode) => NodeData.IsChildAvailaible; 
-  
+  hasChild = (_: number, NodeData: DynamicFlatNode) => NodeData.IsChildAvailaible;
+
 
 
   // Start Search 
-  TempData:any;
-  TempData1:any;
-  searchQuery="";
-  search(){
-    if(this.searchQuery=='')
-    {
+  TempData: any;
+  TempData1: any;
+  searchQuery = "";
+  search() {
+    if (this.searchQuery == '') {
       this.resetSearch();
       return;
     }
@@ -285,25 +292,27 @@ export class PageTemplate4Component {
     this.treeData = this.dataSource.data;
     const query = this.searchQuery.toLowerCase(); // Convert the search query to lowercase for case-insensitive search
     // console.log( this.treeData );
-  // Filter the tree nodes based on the search query
-  const filteredNodes = this.treeData.filter((node:DynamicFlatNode) =>
-    node.name.toLowerCase().includes(query)
-  );
+    // Filter the tree nodes based on the search query
+    const filteredNodes = this.treeData.filter((node: DynamicFlatNode) =>
+      node.name.toLowerCase().includes(query)
+    );
 
-  // Update the tree data with the filtered nodes
-  this.dataSource.data = filteredNodes;
+    // Update the tree data with the filtered nodes
+    this.dataSource.data = filteredNodes;
   }
   resetSearch(): void {
     this.searchQuery = ''; // Clear the search input
     this.dataSource.data = this.TempData1; // Reset the tree data to its original state
   }
-  todoLeafItemSelectionToggle(node:DynamicFlatNode){
+  todoLeafItemSelectionToggle(node: DynamicFlatNode) {
 
   }
   selectAll = false;
-  selectAllNodes()
-  {
+  selectAllNodes() {
     // console.log(node);
   }
 
+  SelectAll(node:any){
+    console.log(node);
+  }
 }

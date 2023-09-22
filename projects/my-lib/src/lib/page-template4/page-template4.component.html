@@ -7,9 +7,9 @@
 </button>
   <div class="tree">
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="width:inherit;">
-    <mat-checkbox [(ngModel)]="selectAll" (change)="selectAllNodes()" >Select All</mat-checkbox>
+    <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAllNodes()" >Select All</mat-checkbox> -->
     <!-- Add a "Select All" checkbox -->
-    <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding class="mat-node">
+    <mat-tree-node *matTreeNodeDef="let node" (click)="SelectAll(node)" matTreeNodePadding class="mat-node">
       <button mat-icon-button
       [attr.aria-label]="'Toggle ' + node.name" matTreeNodeToggle>
       <!-- <mat-icon class="iconFont add_button mat-icon-rtl-mirror" *ngIf="node.IsChildAvailaible!=true"></mat-icon>  -->
