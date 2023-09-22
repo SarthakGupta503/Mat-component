@@ -8,9 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatTreeModule } from '@angular/material/tree';
 import { MatIconModule} from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatCardModule} from '@angular/material/card';
-import { MatFormFieldModule} from '@angular/material/form-field'
+import { MatFormFieldModule} from '@angular/material/form-field';
 import {CdkAccordionModule} from '@angular/cdk/accordion'; 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -36,12 +37,12 @@ import { PageTemplate4Component } from './page-template4/page-template4.componen
     MatExpansionModule,
     BrowserAnimationsModule,
     MatFormFieldModule,
+    MatCheckboxModule,
     CdkAccordionModule,
     MatCardModule,
     FormsModule,
     HttpClientModule,
     MatProgressBarModule,
-    CommonModule
   ],
   exports: [
     MyLibComponent,
@@ -53,6 +54,7 @@ import { PageTemplate4Component } from './page-template4/page-template4.componen
     MatFormFieldModule,
     FormsModule,
     MatProgressBarModule,
+    MatCheckboxModule,
     // PageTemplateComponent,
     PageTemplate2Component,
     PageTemplate3Component,
