@@ -1,0 +1,11 @@
+<div class="search-box">
+    <mat-form-field appearance="outline" class="search-box-input">
+      <input matInput [placeholder]="searchboxText" [(ngModel)]="searchText" (input)="search()">
+      <div matSuffix class="search-box-btn">
+       
+  <mat-icon *ngIf="searchText==''">search</mat-icon>
+  <mat-icon aria-hidden="false" *ngIf="searchText!=''" (click)="clearSearchText()" aria-label="Clear icon" fontIcon="clear"></mat-icon>
+  
+      </div>
+    </mat-form-field>
+  </div>

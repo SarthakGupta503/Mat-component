@@ -20,6 +20,8 @@ import { PageTemplate2Component } from './page-template2/page-template2.componen
 import { PageTemplate3Component } from './page-template3/page-template3.component';
 import { PageTemplate4Component } from './page-template4/page-template4.component';
 import { PageTemplate5Component } from './page-template5/page-template5.component';
+import { SearchboxComponent } from './searchbox/searchbox.component';
+
 @NgModule({                
   declarations: [
     MyLibComponent,
@@ -28,6 +30,7 @@ import { PageTemplate5Component } from './page-template5/page-template5.componen
     PageTemplate3Component,
     PageTemplate4Component,
     PageTemplate5Component,
+    SearchboxComponent,
   ],
   imports: [
     MatInputModule,

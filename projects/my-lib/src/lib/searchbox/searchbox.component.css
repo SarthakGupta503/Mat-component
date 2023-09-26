@@ -1,0 +1,13 @@
+.search-box {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .search-box-input {
+    margin: auto;
+    width: 90%;
+  }
+  .search-box-btn {
+    margin-right: 10px;
+  }

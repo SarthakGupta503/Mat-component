@@ -1,10 +1,10 @@
 <div class="container">
   <div class="box">
-<mat-form-field>
-  <input matInput placeholder="Search" [(ngModel)]="searchQuery" (input)="search()">
-</mat-form-field>
-<button mat-icon-button (click)="resetSearch()">
-</button>
+    <lib-searchbox
+    (searchTextChanged)="onSearchTextChanged($event)"
+    [searchboxText]="searchboxText"
+  ></lib-searchbox>
+  
   <div class="tree">
   <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="width:inherit;">
     <!-- <mat-checkbox [(ngModel)]="selectAll" (change)="selectAllNodes()" >Select All</mat-checkbox> -->

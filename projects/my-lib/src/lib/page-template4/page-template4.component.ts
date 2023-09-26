@@ -281,6 +281,10 @@ export class PageTemplate4Component {
   TempData: any;
   TempData1: any;
   searchQuery = "";
+  searchboxText="";
+  onSearchTextChanged(data:any){
+    console.log(data);
+  }
   search() {
     if (this.searchQuery == '') {
       this.resetSearch();
